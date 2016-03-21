@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<EapHostUserCredentials xmlns="http://www.microsoft.com/provisioning/EapHostUserCredentials" xmlns:eapCommon="http://www.microsoft.com/provisioning/EapCommon" xmlns:baseEap="http://www.microsoft.com/provisioning/BaseEapMethodUserCredentials">
+    <EapMethod>
+        <Type xmlns="http://www.microsoft.com/provisioning/EapCommon">13</Type>
+        <AuthorId xmlns="http://www.microsoft.com/provisioning/EapCommon">0</AuthorId>
+   </EapMethod>
+   <Credentials>
+     <Eap xmlns="http://www.microsoft.com/provisioning/BaseEapUserPropertiesV1">
+       <Type xmlns="http://www.microsoft.com/provisioning/BaseEapUserPropertiesV1">13</Type> 
+       <EapType xmlns="http://www.microsoft.com/provisioning/EapTlsUserPropertiesV1">
+         <Username xmlns="http://www.microsoft.com/provisioning/EapTlsUserPropertiesV1">azalea_client</Username> 
+         <UserCert xmlns="http://www.microsoft.com/provisioning/EapTlsUserPropertiesV1">ffccb34ab237b392226241376be785d7d4d8126e</UserCert> 
+       </EapType>
+     </Eap>
+   </Credentials>
+ </EapHostUserCredentials>

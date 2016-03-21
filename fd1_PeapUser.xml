@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<EapHostUserCredentials xmlns="http://www.microsoft.com/provisioning/EapHostUserCredentials" xmlns:eapCommon="http://www.microsoft.com/provisioning/EapCommon" xmlns:baseEap="http://www.microsoft.com/provisioning/BaseEapMethodUserCredentials">
+    <EapMethod>
+        <Type xmlns="http://www.microsoft.com/provisioning/EapCommon">25</Type>
+        <VendorId xmlns="http://www.microsoft.com/provisioning/EapCommon">0</VendorId>
+        <VendorType xmlns="http://www.microsoft.com/provisioning/EapCommon">0</VendorType>
+        <AuthorId xmlns="http://www.microsoft.com/provisioning/EapCommon">0</AuthorId>
+    </EapMethod>
+    <Credentials>
+        <Eap xmlns="http://www.microsoft.com/provisioning/BaseEapUserPropertiesV1">
+            <Type xmlns="http://www.microsoft.com/provisioning/BaseEapUserPropertiesV1">25</Type>
+            <EapType xmlns="http://www.microsoft.com/provisioning/MsPeapUserPropertiesV1">
+                <Eap xmlns="http://www.microsoft.com/provisioning/BaseEapUserPropertiesV1">
+                    <Type xmlns="http://www.microsoft.com/provisioning/BaseEapUserPropertiesV1">26</Type>
+                    <EapType xmlns="http://www.microsoft.com/provisioning/MsChapV2UserPropertiesV1">
+                        <Username xmlns="http://www.microsoft.com/provisioning/MsChapV2UserPropertiesV1">fding</Username>
+                        <Password xmlns="http://www.microsoft.com/provisioning/MsChapV2UserPropertiesV1">123456</Password>
+                    </EapType>
+                </Eap>
+            </EapType>
+        </Eap>
+    </Credentials>
+</EapHostUserCredentials>

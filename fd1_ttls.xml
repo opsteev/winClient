@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<WLANProfile xmlns="http://www.microsoft.com/networking/WLAN/profile/v1">
+	<name>fd1_ttls</name>
+	<SSIDConfig>
+		<SSID>
+			<hex>6664315F74746C73</hex>
+			<name>fd1_ttls</name>
+		</SSID>
+		<nonBroadcast>false</nonBroadcast>
+	</SSIDConfig>
+	<connectionType>ESS</connectionType>
+	<connectionMode>manual</connectionMode>
+	<autoSwitch>false</autoSwitch>
+	<MSM>
+		<security>
+			<authEncryption>
+				<authentication>WPA2</authentication>
+				<encryption>AES</encryption>
+				<useOneX>true</useOneX>
+			</authEncryption>
+			<OneX xmlns="http://www.microsoft.com/networking/OneX/v1">
+				<cacheUserData>true</cacheUserData>
+				<authMode>machineOrUser</authMode>
+				<EAPConfig><EapHostConfig xmlns="http://www.microsoft.com/provisioning/EapHostConfig"><EapMethod><Type xmlns="http://www.microsoft.com/provisioning/EapCommon">21</Type><VendorId xmlns="http://www.microsoft.com/provisioning/EapCommon">0</VendorId><VendorType xmlns="http://www.microsoft.com/provisioning/EapCommon">0</VendorType><AuthorId xmlns="http://www.microsoft.com/provisioning/EapCommon">8086</AuthorId></EapMethod><Config xmlns="http://www.microsoft.com/provisioning/EapHostConfig"><EapTtls xmlns="http://www.intel.com/WiFi"><Phase2Type>MSCHAPV2</Phase2Type><credSaved><identity encrypted="true">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAWAt29ty9rU6aOxerK/1TMwQAAAACAAAAAAAQZgAAAAEAACAAAAD7UFi4h6RWoG2YUP+8A/xfChBHbDVtS5JEoeofTBuv0QAAAAAOgAAAAAIAACAAAABHR4809qSy0LA5fzumWJeeRiRFTTdB7bLEj/6tZxISkhAAAACJVPmwEZDqBAsmiwxgIA46QAAAAF+nW9YM9SmB6pTmgOH8F7aEZpm+g5APDlTyjSCMh/Z3/rs+Mi0lz/qapbGja5hRbQMB0vmEWzJolZiFaw+5yCk=</identity><password encrypted="true">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAWAt29ty9rU6aOxerK/1TMwQAAAACAAAAAAAQZgAAAAEAACAAAABvcQEkj1Yj7OtDd6Mx1DNeU8IcFBqn5kGMRszsCG7HigAAAAAOgAAAAAIAACAAAAA6kWl2CJss30A2T94gA1Hg0GQFUGGP+HZJUOHzaond7RAAAACltLw/FE3cDLlKDz9+SKEgQAAAAM2IGNdcB9aaWwzdLJiC22cKtZTAoRRaI3lmGGMdTnYK5VkQwIdAyuvy+v/Zai/C0hvD6CiF4C27zJzznBdLfiQ=</password></credSaved><anonymousIdentity>MAGE\root</anonymousIdentity><noServerValidation/><noSubjectMatch/></EapTtls></Config></EapHostConfig></EAPConfig>
+			</OneX>
+		</security>
+	</MSM>
+</WLANProfile>
