@@ -339,6 +339,7 @@ DWORD SetProfileUserData(__in HANDLE hClient,__in GUID guidIntf,__in LPWSTR Prof
 	// __try and __leave cannot be used here because of COM object
     do
     {
+		wcout << L"Enter SetProfileUserData"<<endl;
         // create a COM object to read the XML file
         hr = CoCreateInstance(
                 CLSID_DOMDocument60,
@@ -347,6 +348,7 @@ DWORD SetProfileUserData(__in HANDLE hClient,__in GUID guidIntf,__in LPWSTR Prof
                 IID_IXMLDOMDocument2,
                 (void**)&pXmlDoc
                 );
+		wcout << L"Created a COM object"<<endl;
         if (hr != S_OK)
         {
             dwError = WIN32_FROM_HRESULT(hr);
@@ -355,6 +357,7 @@ DWORD SetProfileUserData(__in HANDLE hClient,__in GUID guidIntf,__in LPWSTR Prof
 
 		// load the file into the COM object
 		hr = pXmlDoc->load((CComVariant)EapUserProfile, &vbSuccess);
+		wcout << L"loaded the file"<<endl;
         if (hr != S_OK || vbSuccess != VARIANT_TRUE)
         {
             dwError = ERROR_BAD_PROFILE;
@@ -368,16 +371,20 @@ DWORD SetProfileUserData(__in HANDLE hClient,__in GUID guidIntf,__in LPWSTR Prof
             dwError = ERROR_BAD_PROFILE;
             break;
         }
+		wcout << L"Got the xml string"<<endl;
         // set profile
+		wcout << L"The profilename is: "<<Profilename<<endl;
         dwError = WlanSetProfileEapXmlUserData(hClient,&guidIntf,Profilename,0,bstrXml,NULL);
         if (dwError != ERROR_SUCCESS)
         {
             break;
         }
+		wcout << L"Setted profile"<<endl;
     } while (FALSE);
 	
 	return dwError;
 }
+
 
 
 // delete profile
@@ -532,7 +539,9 @@ VOID Connect(__in int argc,__in_ecount(argc) LPWSTR argv[])
 	LPWSTR pProfilePath;
 	LPWSTR EapUserProfile = L"";
 	DOT11_MAC_ADDRESS bssid ;
-	UCHAR tbssid[12];
+	UCHAR tbssid[13];
+	const UCHAR dummyBssid[13]="000000000000";
+	bool setBssid = false;
 
     __try
     {
@@ -637,18 +646,30 @@ VOID Connect(__in int argc,__in_ecount(argc) LPWSTR argv[])
         wlanConnPara.dot11BssType = dot11_BSS_type_infrastructure;
         // the desired BSSID list is empty
         //wlanConnPara.pDesiredBssidList = NULL;
-		wlanConnPara.pDesiredBssidList=new DOT11_BSSID_LIST;
-		wlanConnPara.pDesiredBssidList->Header.Type=NDIS_OBJECT_TYPE_DEFAULT;
-		wlanConnPara.pDesiredBssidList->Header.Revision=DOT11_BSSID_LIST_REVISION_1;
-		wlanConnPara.pDesiredBssidList->Header.Size=sizeof(DOT11_BSSID_LIST);
-		wlanConnPara.pDesiredBssidList->uNumOfEntries=1;
-		wlanConnPara.pDesiredBssidList->uTotalNumOfEntries=1;
-		wlanConnPara.pDesiredBssidList->BSSIDs[0][0]=bssid[0];
-		wlanConnPara.pDesiredBssidList->BSSIDs[0][1]=bssid[1];
-		wlanConnPara.pDesiredBssidList->BSSIDs[0][2]=bssid[2];
-		wlanConnPara.pDesiredBssidList->BSSIDs[0][3]=bssid[3];
-		wlanConnPara.pDesiredBssidList->BSSIDs[0][4]=bssid[4];
-		wlanConnPara.pDesiredBssidList->BSSIDs[0][5]=bssid[5];
+		for(int t=0; t < 12; t++) {
+			if(tbssid[t]!=dummyBssid[t]) {
+				setBssid=true;
+				break;
+			}
+		}
+		if(!setBssid) {
+			cout<<"Desiredbssid is NULL"<<endl;
+			wlanConnPara.pDesiredBssidList = NULL;
+		} else {
+			cout<<"Desiredbssid is "<<bssid<<endl;
+			wlanConnPara.pDesiredBssidList=new DOT11_BSSID_LIST;
+			wlanConnPara.pDesiredBssidList->Header.Type=NDIS_OBJECT_TYPE_DEFAULT;
+			wlanConnPara.pDesiredBssidList->Header.Revision=DOT11_BSSID_LIST_REVISION_1;
+			wlanConnPara.pDesiredBssidList->Header.Size=sizeof(DOT11_BSSID_LIST);
+			wlanConnPara.pDesiredBssidList->uNumOfEntries=1;
+			wlanConnPara.pDesiredBssidList->uTotalNumOfEntries=1;
+			wlanConnPara.pDesiredBssidList->BSSIDs[0][0]=bssid[0];
+			wlanConnPara.pDesiredBssidList->BSSIDs[0][1]=bssid[1];
+			wlanConnPara.pDesiredBssidList->BSSIDs[0][2]=bssid[2];
+			wlanConnPara.pDesiredBssidList->BSSIDs[0][3]=bssid[3];
+			wlanConnPara.pDesiredBssidList->BSSIDs[0][4]=bssid[4];
+			wlanConnPara.pDesiredBssidList->BSSIDs[0][5]=bssid[5];
+		}
         // no connection flags
         wlanConnPara.dwFlags = 0;
 
