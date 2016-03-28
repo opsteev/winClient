@@ -1,3 +1,6 @@
+This is modified from msdn example code, add several lines in code to make it support force connecting the specifi bssid.
+
+
 1.
 Client.exe ?
 Use "help xyz" to show the description of command xyz.
